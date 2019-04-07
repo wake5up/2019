@@ -37,47 +37,47 @@
 
 #include<stdio.h>
 #include<stdlib.h>
+#include<math.h>
+int panbie(int x, int y)
+{
+	int i, m, n;
+	int a[10] = { 0 };
+	for (i = 0; i <5; i++)
+	{
+		n = x % 10;
+		a[n]++;
+		x = x / 10;//
+	}
+	for (i = 0; i <4; i++)
+	{
+		n = y % 10;
+		a[n]++;
+		y = y / 10;
+	}
+
+	for (i = 0; i <= 9; i++)
+	if (a[i] >= 2)
+	{
+		return 0;
+	}
+		return 1;
+
+}
+
 int main()
 {
-	int i,j,k=0,n=0;
-	int flag[9]={1,2,3,4,5,6,7,8,9};
-	for(i=5000;i<10000;i++)
+	int i, j, f;
+	for (i = 10000; i < 100000; i++)
+	for (j = 1000; j < 10000; j++)
 	{
-		j=i*2;
-		if(j>=10000&&j<=99999)
+		if (i == (2 * j))
 		{
-			while(i>0)
-			{
-			k=i%10;
-			i=i/10;
-			for(i=0;i<4;i++)
-			{
-				flag[i]==k;
-				n++;
-			}
-			if(n>1)
-			{
-				break;
-			}
-			}
-			while(j>0)
-			{
-				k=j%10;
-				j=j/10;
-				for(i=4;i<9;i++)
-				{
-					flag[i]=k;
-					n++;
-				}
-				if(n>1)
-				{
-					break;
-				}
-			}
+			f = panbie(i, j);
+			if (f == 1)
+				printf("%d=2*%d\n", i, j);
 		}
+
 	}
-	if(n!=2)
-		printf("%d%d",i,j);
 	system("pause");
 	return 0;
 }
