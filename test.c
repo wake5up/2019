@@ -40,6 +40,8 @@ int main()
 	system("pause");
 	return 0;
 }
+
+//#include<stdio.h>
 //int main()//大小写互换
 //{
 //	char num;
