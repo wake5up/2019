@@ -99,3 +99,57 @@ public class Sjfjiooe
         return count;
     }
 }
+
+import java.util.Scanner;
+
+
+
+public class Sjfjiooe
+
+{
+
+    public static void main(String[] args) 
+
+    {
+
+        System.out.println("请输入需要素数个数的范围:");
+
+        Scanner input=new Scanner(System.in);
+
+        int n=input.nextInt();
+
+        System.out.print(n+"范围内的素数个数是"+isPrime(n));
+
+    }
+
+    public static int isPrime(int n)//使用sumDighits方法
+
+    {
+
+       int count=0;int j=0;//各个数字之和
+
+       for(int i=2;i<n;i++)
+
+       {
+
+           for(j=2;j<Math.sqrt(i);j++)
+
+           {
+
+               if(i%j==0)
+
+                   break;
+
+           }
+
+           if(j>Math.sqrt(i))
+
+           count++;
+
+       }
+
+        return count;
+
+    }
+
+}
