@@ -1,0 +1,66 @@
+1.	完成猜数字游戏的代码实现
+
+import java.util.Scanner;
+
+public class GuessNumber 
+{
+    public static void main(String[] args) 
+    {
+        int number=(int)(Math.random()*101);
+        Scanner input =new Scanner(System.in);
+        System.out.println("随机数在0到100之间！");
+        int guess=-1;
+        while(guess!=number)
+        {
+            System.out.print("请输入数字：");
+            guess=input.nextInt();
+            if(guess==number)
+            {
+                System.out.print("恭喜你猜对了");
+            }
+            else if(guess>number)
+            {
+                System.out.println("猜大了");
+            }
+            else
+            {
+                System.out.println("猜小了");
+            }
+        }
+    }
+}
+
+2.	提示用户输入一个十进制的整数，然后显示对应的二进制值。
+
+import java.util.Scanner;
+
+public class Swap 
+{
+    public static void main(String[] args) 
+    {
+        System.out.print("请输入一个十进制整数:");
+        Scanner input = new Scanner(System.in);
+        int a=input.nextInt();
+        System.out.print("整数的二进制是");
+        swap(a);
+    }
+    public static void swap(int n)
+    {
+        int count=0;
+        int k=0;
+        int i=0;
+        int[] b=new int [100];
+        while(n>0)
+        {
+            k=n%2;
+            count++;
+            n/=2;
+            b[i]=k;
+            i++;
+        }
+        for(int j=count-1;j>=0;j--)
+        {
+        System.out.print(b[j]);
+        }
+    }
+}
