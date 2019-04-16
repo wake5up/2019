@@ -22,3 +22,98 @@
 //1 1
 //1 2 1
 //1 3 3 1
+
+
+//#include<stdio.h>
+//int main()
+//{
+//	int a, b, c, d, e;
+//	for (a = 1; a <= 5; a++)
+//	{
+//		for (b = 1; b <= 5; b++)
+//		{
+//			if (a != b)
+//			{
+//				for (c = 1; c <= 5; c++)
+//				{
+//					if (c != a&&c != b)
+//					{
+//						
+//						for (d = 1; d <= 5; d++)
+//						{
+//							if (d != a&&d != b&&d != c)
+//							{
+//								e = 15 - a - b - c - d;
+//								if (e != a&&e != b&&e != c&&e != d)
+//								if (((b == 2) + (a == 3) == 1) && ((b == 2) + (e == 4) == 1) && ((c == 1) + (d == 2) == 1) && ((c == 5) + (d == 3) == 1) \
+//									&& ((e == 4) + (a == 1) == 1))
+//									printf("a是第%d\nb是第%d\nc是第%d\nd是第%d\ne是第%d\n", a, b, c, d, e);
+//							}
+//						}
+//					}
+//				}
+//			}
+//		}
+//	}
+//	system("pause");
+//	return 0;
+//}
+
+//#include<stdio.h>
+//int main()
+//{
+//	int x;
+//	for (x = 1; x <= 4; x++)
+//	{
+//		if ((x != 1) + (x == 3) + (x == 4) + (x != 4) == 3)
+//		{
+//			printf("%c是凶手", x + 64);
+//		}
+//	}
+//	system("pause");
+//	return 0;
+//}
+
+#include<stdio.h>
+
+void Coeff(int a[], int n)
+{
+	int i;
+	if (n == 1)
+	{
+		a[1] = 1;
+		a[2] = 1;
+	}
+	else
+	{
+		Coeff(a, n - 1);
+		for (i = n; i >= 2; i--)
+		{
+			a[i] = a[i] + a[i - 1];
+			a[1] = 1;
+			a[n + 1] = 1;
+		}
+	}
+}
+int main()
+{
+	int a[100], i,k=1, n=0;
+	scanf("%d",&n);
+	
+	for (i = 1; i <= k; i++)
+	{
+		Coeff(a, n);
+		printf("%d",a[i]);
+		if (i == k)
+		{
+			k++;
+			if (k > n - 1)
+			{
+				break;
+			}
+		}
+	}
+	
+	system("pause");
+	return 0;
+}
