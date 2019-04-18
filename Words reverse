@@ -1,0 +1,57 @@
+有一个字符数组的内容为:"student a am i",
+请你将数组的内容改为"i am a student".
+要求：
+不能使用库函数。
+只能开辟有限个空间（空间个数和字符串的长度无关）。
+#include<stdio.h>
+#include<string.h>
+int MyStrlen(char *str)//字符串长度函数
+{
+	int count = 0;
+	while (*str != '\0')
+	{
+		str++;
+		count++;
+	}
+	return count;
+}
+void Reverse(char *left, char *right)//字符串逆序
+{
+	char temp;
+	while (left < right)
+	{
+		temp = *left;
+		*left = *right;
+		*right = temp;
+		left++;
+		right--;
+	}
+}
+void ReverseSentence(char *str)//单词逆序
+{
+	char *left = str;
+	char *right = str + MyStrlen(str) - 1;
+	char *p=str;
+	Reverse(left,right);
+	while (*p != '\0')
+	{
+		char *b = p;
+		while (*p != ' '&&*p != '\0')
+		{
+			p++;
+		}
+		Reverse(b, p-1);//调换单词
+		if (*p==' ')
+		{
+			p++;
+		}
+	}
+}
+int main()
+{
+	char str[] = "i am a student";
+	ReverseSentence(str);
+	printf("%s\n",str);
+	system("pause");
+	return 0;
+}
