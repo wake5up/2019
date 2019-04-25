@@ -1,0 +1,164 @@
+//1.实现一个函数，可以左旋字符串中的k个字符。
+//ABCD左旋一个字符得到BCDA
+//ABCD左旋两个字符得到CDAB
+//
+//2.判断一个字符串是否为另外一个字符串旋转之后的字符串。
+//例如：给定s1 = AABCD和s2 = BCDAA，返回1
+//给定s1 = abcd和s2 = ACBD，返回0.
+//
+//AABCD左旋一个字符得到ABCDA
+//AABCD左旋两个字符得到BCDAA
+//
+//AABCD右旋一个字符得到DAABC
+
+//#include<stdio.h>
+//#include<string.h>
+//
+//void left_handed(char *str, int k)
+//{
+//	int i;
+//	int count = 0;
+//	char temp;
+//	while (count < k)
+//	{
+//		temp = str[0];
+//		for (i = 0; i < strlen(str)-1; i++)
+//		{
+//			str[i] = str[i + 1];
+//		}
+//		count++;
+//		str[strlen(str) - 1] = temp;
+//	}
+//}
+//int main()
+//{
+//	int k=0;
+//	char str[] = "abcdef";
+//	printf("输入需要左旋多少个字符:\n");
+//	scanf("%d",&k);
+//	left_handed(str,k);
+//	printf("%s",&str);
+//	system("pause");
+//	return 0;
+//}
+
+//#include<stdio.h>
+//void left_move(char *str, int k)
+//{
+//	while (k != 0)
+//	{
+//		char *cur = str;
+//		char tmp=*cur;
+//		while ((*(cur+1)) != '\0')
+//		{
+//			*cur = *(cur + 1);
+//			cur++;
+//		}
+//		*(cur) = tmp;
+//		k--;
+//	}
+//}
+//int main()
+//{
+//	char str[] = "abcd";
+//	int k = 0;
+//	scanf("%d",&k);
+//	left_move(str, k);
+//	printf("%s",str);
+//	system("pause");
+//	return 0;
+//}
+
+//#include<stdio.h>
+//#include<string.h>
+//#include<stdlib.h>
+//
+//void Reverse(char *left, char *right)
+//{
+//  assert(left != NULL && right != NULL);
+//	while (left < right)
+//	{
+//		char tmp = *left;
+//		*left = *right;
+//		*right = tmp;
+//		left++;
+//		right--;
+//	}
+//}
+//void left_move(char *str, int k, int len)
+//{
+//	char *left = str;
+//	char *right = str+len - 1;
+//	if (k<0 || k>len)
+//	{
+//		printf("不合法！\n");
+//	}
+//	else
+//	{
+//		Reverse(left, str+k-1);//地址
+//		Reverse(str+k , right);
+//		Reverse(left, right);
+//	}
+//}
+//int main()
+//{
+//	int k;
+//	scanf("%d",&k);
+//	char str[] = "abcd";
+//	int len = strlen(str);
+//	left_move(str,k,len);
+//	printf("%s",str);
+//	system("pause");
+//	return 0;
+//}
+
+#include<stdio.h>
+#include<string.h>
+
+void left_move(char *str, int k)
+{
+	while (k != 0)
+	{
+		char *cur = str;
+		char tmp=*cur;
+		while ((*(cur+1)) != '\0')
+		{
+			*cur = *(cur + 1);
+			cur++;
+		}
+		*(cur) = tmp;
+		k--;
+	}
+}
+int Judge_string(char *str, char *p)
+{
+	int i;
+	if (strlen(str) != strlen(p))
+	{
+		return 0;
+	}
+	for (i = 1; i <= strlen(str); i++)
+	{
+		left_move(str,i);
+		if (strcmp(str, p)==0)
+		{
+			return 1;
+		}
+	}
+	return 0;
+}
+int main()
+{
+	char str = "abcd";
+	char str1 = "abce";
+	int ret = Judge_string(str, str1);
+	if (0 == ret)
+	{
+		printf("没找到！\n");
+	}
+	else
+	{
+		printf("找到了！\n");
+	}
+	return 0;
+}
