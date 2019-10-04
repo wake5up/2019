@@ -2,7 +2,12 @@
 
 
 #include<stdio.h>
+#include<stdlib.h>
+
 #define Q_INSERT 8
+#define SIZE(arr) sizeof(arr)/sizeof(arr[0])
+
+
 void insertsort(int* arr, int len)
 {
 	int i;
@@ -138,10 +143,44 @@ void HQSort(int *arr, int start, int end)
 
 void dealmergesort(int *arr, int *temp, int start, int end)
 {
-	int mid = (end - start) >> 1 + start;
-	int i = 0;
+	if (start >= end)
+	{
+		return;
+	}
+	int mid = (end+start)/2;
+	dealmergesort(arr,temp,start,mid);
+	dealmergesort(arr,temp,mid+1,end);
+
+	int i = start;
 	int j = mid+1;
-	for ()
+	int k = i;
+	for (; i <= mid&&j <= end;k++)
+	{
+		if (arr[i]>=arr[j])
+		{
+			temp[k] = arr[j];
+			j++;
+			
+		}
+		else
+		{
+			temp[k] = arr[i];
+			i++;
+		}
+	}
+	for (; i <= mid; i++, k++)
+	{
+		temp[k] = arr[i];
+	}
+	for (; j <= end; j++, k++)
+	{
+		temp[k] = arr[j];
+	}
+	int g;
+	for (g = 0; g < end - start + 1; g++)
+	{
+		arr[g] = temp[g];
+	}
 }
 void mergesort(int *arr, int len)
 {
@@ -162,11 +201,12 @@ int main()
 {
 	int i;
 	int arr[] = { 1, 2, 5, 3, 8, 6, 0, 5,9,7 };
-	//  insertsort(arr,sizeof(arr)/sizeof(arr[0]));
-	//ShellSort(arr, sizeof(arr) / sizeof(arr[0]));
-	//BubbleSort(arr, sizeof(arr) / sizeof(arr[0]));
-	//QSort(arr,0,sizeof(arr)/sizeof(arr[0])-1);
-	//HQSort(arr, 0,sizeof(arr) / sizeof(arr[0])-1);
+	//  insertsort(arr,SIZE(arr));
+	//ShellSort(arr, SIZE(arr));
+	//BubbleSort(arr, SIZE(arr));
+	//QSort(arr,0,SIZE(arr));
+	//HQSort(arr, 0,SIZE(arr));
+	mergesort(arr, SIZE(arr)-1);
 	PrintfFun(arr, sizeof(arr) / sizeof(sizeof(arr[0])));
 	return 0;
 }
